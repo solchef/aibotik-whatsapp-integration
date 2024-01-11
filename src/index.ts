@@ -6,7 +6,7 @@ import socketio from "socket.io";
 
 // routes
 // mongo connection
-import "./config/mongo";
+// import "./config/mongo";
 // routes
 
 // socket configuration
@@ -14,7 +14,9 @@ import "./config/mongo";
 
 
 import indexRouter from "./routes/index";
-// import userRouter from "./routes/user.js";
+import whtsappRouter from "./routes/whatsapp";
+import bodyParser from "body-parser";
+
 // middlewares
 // import { decode } from './middlewares/jwt.js'
 
@@ -28,7 +30,11 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+app.use(bodyParser.json())
+
 app.use("/", indexRouter);
+app.use("/", whtsappRouter);
+
 // app.use("/users", userRouter);
 // app.use("/room", decode, chatRoomRouter);
 // app.use("/delete", deleteRouter);

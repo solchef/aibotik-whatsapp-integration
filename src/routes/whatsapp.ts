@@ -1,13 +1,15 @@
 import express from 'express';
 // controllers
-import user from '../controllers/user';
 
+import {checkContact, sendMessage, webhookPost, webHookGet} from '../controllers/whatsapp'
 const router = express.Router();
 
 router
-  .get('/', user.onGetAllUsers)
-  .post('/', user.onCreateUser)
-  .get('/:id', user.onGetUserById)
-  .delete('/:id', user.onDeleteUserById)
+  .get('/check-contact', checkContact)
+  .post('/send-message', sendMessage)
+  .post('/webhook', webhookPost)
+  .get('/webhook', webHookGet)
 
 export default router;
+
+
